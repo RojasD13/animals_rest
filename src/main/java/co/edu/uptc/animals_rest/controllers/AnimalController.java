@@ -37,7 +37,7 @@ public class AnimalController {
         return animalService.getAnimalInRange(from, to);
     }
 
-    @GetMapping("/category-count")
+    @GetMapping("/numberByCategory")
     public Map<String, Long> getAnimalCountByCategory() throws IOException {
         logger.info("llamado de getAnimalCountByCategory");
         return animalService.getAnimalCountByCategory();
