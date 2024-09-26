@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import java.util.stream.Collectors;
+import java.util.Map;
 
 @Service
 public class AnimalService {
@@ -62,11 +63,10 @@ public class AnimalService {
         return animales;
     }
 
-    public List<Animal> getAnimalsByCategory(String category) throws IOException {
+    public Map<String, Long> getAnimalCountByCategory() throws IOException {
         List<Animal> animales = getAnimalAll();
         return animales.stream()
-                .filter(animal -> animal.getCategory().equalsIgnoreCase(category))
-                .collect(Collectors.toList());
+                .collect(Collectors.groupingBy(Animal::getCategory, Collectors.counting()));
     }
 
 }

@@ -2,6 +2,7 @@ package co.edu.uptc.animals_rest.controllers;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,11 +37,10 @@ public class AnimalController {
         return animalService.getAnimalInRange(from, to);
     }
 
-    @GetMapping("/category/{category}")
-    public List<Animal> getAnimalsByCategory(@PathVariable String category) throws IOException {
-        logger.info("getAnimalsByCategory called with category: {}", category);
-        return animalService.getAnimalsByCategory(category);
+    @GetMapping("/category-count")
+    public Map<String, Long> getAnimalCountByCategory() throws IOException {
+        logger.info("llamado de getAnimalCountByCategory");
+        return animalService.getAnimalCountByCategory();
     }
-
 
 }
