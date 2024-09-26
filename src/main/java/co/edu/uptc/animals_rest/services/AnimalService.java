@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import java.util.stream.Collectors;
+
 @Service
 public class AnimalService {
      private static final Logger logger = LoggerFactory.getLogger(AnimalService.class);
@@ -59,5 +61,20 @@ public class AnimalService {
     
         return animales;
     }
+
+    public List<Animal> getAnimalByLength(int nameLength) throws IOException {
+        List<Animal> animales = getAnimalAll();
+        return animales.stream()
+                .filter(animal -> animal.getName().length() < nameLength)
+                .collect(Collectors.toList());
+    }
+
+    public List<Animal> getAnimalsByCategory(String category) throws IOException {
+        List<Animal> animales = getAnimalAll();
+        return animales.stream()
+                .filter(animal -> animal.getCategory().equalsIgnoreCase(category))
+                .collect(Collectors.toList());
+    }
+
 }
 

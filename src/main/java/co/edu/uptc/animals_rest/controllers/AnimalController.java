@@ -6,10 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import co.edu.uptc.animals_rest.models.Animal;
 import co.edu.uptc.animals_rest.services.AnimalService;
@@ -37,6 +34,18 @@ public class AnimalController {
     public List<Animal> getAnimal(@RequestParam int from, @RequestParam int to) throws IOException {
         logger.info("getAnimal called with parameters: from = {}, to = {}", from, to);
         return animalService.getAnimalInRange(from, to);
+    }
+
+    @GetMapping("/name-length/{numberOfLetters}")
+    public List<Animal> getAnimalByLength(@PathVariable int numberOfLetters) throws IOException {
+        logger.info("getAnimal called with parameters: number of letters = {}", numberOfLetters);
+        return animalService.getAnimalByLength(numberOfLetters);
+    }
+
+    @GetMapping("/category/{category}")
+    public List<Animal> getAnimalsByCategory(@PathVariable String category) throws IOException {
+        logger.info("getAnimalsByCategory called with category: {}", category);
+        return animalService.getAnimalsByCategory(category);
     }
 
 
