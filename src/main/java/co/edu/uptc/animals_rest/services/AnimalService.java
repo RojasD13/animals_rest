@@ -62,13 +62,6 @@ public class AnimalService {
         return animales;
     }
 
-    public List<Animal> getAnimalByLength(int nameLength) throws IOException {
-        List<Animal> animales = getAnimalAll();
-        return animales.stream()
-                .filter(animal -> animal.getName().length() < nameLength)
-                .collect(Collectors.toList());
-    }
-
     public List<Animal> getAnimalsByCategory(String category) throws IOException {
         List<Animal> animales = getAnimalAll();
         return animales.stream()

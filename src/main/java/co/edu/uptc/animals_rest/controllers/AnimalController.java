@@ -36,12 +36,6 @@ public class AnimalController {
         return animalService.getAnimalInRange(from, to);
     }
 
-    @GetMapping("/name-length/{numberOfLetters}")
-    public List<Animal> getAnimalByLength(@PathVariable int numberOfLetters) throws IOException {
-        logger.info("getAnimal called with parameters: number of letters = {}", numberOfLetters);
-        return animalService.getAnimalByLength(numberOfLetters);
-    }
-
     @GetMapping("/category/{category}")
     public List<Animal> getAnimalsByCategory(@PathVariable String category) throws IOException {
         logger.info("getAnimalsByCategory called with category: {}", category);
